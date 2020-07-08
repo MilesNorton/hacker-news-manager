@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (webpackConfigEnv) => {
   const defaultConfig = singleSpaDefaults({
-    orgName: "hacker-news",
-    projectName: "root-config",
+    orgName: "kuttle",
+    projectName: "hacker-news-manager",
     webpackConfigEnv,
   });
 
@@ -13,6 +13,11 @@ module.exports = (webpackConfigEnv) => {
     // modify the webpack config however you'd like to by adding to this object
     devServer: {
       historyApiFallback: true,
+    },
+    entry: './src/spa-config-entry.ts', /** entry file location */
+    output: {
+      filename: 'hacker-news-manager.js', /** customise output name */
+      publicPath: '/',
     },
     plugins: [
       new HtmlWebpackPlugin({

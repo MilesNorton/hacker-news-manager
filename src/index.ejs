@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Root Config</title>
+  <title>Hacker News</title>
   <!--
     Remove this if you only support browsers that support async/await.
     This is needed by babel to share largeish helper code for compiling async/await in older
@@ -15,7 +15,7 @@
     This CSP allows any SSL-enabled host, but you should limit these directives further to increase your app's security.
     Learn more about CSP policies at https://content-security-policy.com/#directive
   -->
-  <meta http-equiv="Content-Security-Policy"  content="default-src 'self' http: localhost:*; script-src 'unsafe-inline' http: localhost:*; connect-src http: localhost:* ws://localhost:*; style-src 'unsafe-inline' http:; object-src 'none';"  >
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
   <meta name="importmap-type" content="systemjs-importmap" />
 
   <!-- Shared dependencies go into this import map. Your shared dependencies must be of one of the following formats:
@@ -29,9 +29,9 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.0/lib/system/single-spa.min.js",
         "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
-        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js"
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js",
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.0/lib/system/single-spa.min.js"
       }
     }
   </script>
@@ -43,12 +43,21 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@hacker-news/root-config": "//localhost:9000/hacker-news-root-config.js"
+        "@kuttle/hacker-news-manager": "//localhost:9000/hacker-news-manager.js",
+        "@kuttle/hacker-news-search": "//localhost:8500/hacker-news-search-client.js"
+      }
+    }
+  </script>
+  <% } else { %>
+   <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@kuttle/hacker-news-manager": "https://cocky-ride-310246.netlify.app/org-name-root-config.js",
+        "@kuttle/hacker-news-search": "https://nifty-lalande-12f84c.netlify.app/hacker-news-search-client.js"
       }
     }
   </script>
   <% } %>
-
   <!--
     If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
     Learn more about why at https://single-spa.js.org/docs/ecosystem-angular/#zonejs
@@ -70,7 +79,7 @@
 <body>
   <main></main>
   <script>
-    System.import('@hacker-news/root-config');
+    System.import('@kuttle/hacker-news-manager');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
