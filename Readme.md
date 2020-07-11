@@ -8,6 +8,10 @@ The idea for this repository is to create working micro-frontend manager. This m
 
 https://single-spa.js.org/ was used as the micro-frontend framework. This projects represents the single-spa root config.
 
+## See the Demo
+
+https://cocky-ride-310246.netlify.app/
+
 ## Try It
 
 1.  `npm install`
