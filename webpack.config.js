@@ -11,9 +11,6 @@ module.exports = (webpackConfigEnv) => {
 
   return webpackMerge.smart(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
-    devServer: {
-      historyApiFallback: true,
-    },
     entry: './src/spa-config-entry.ts', /** entry file location */
     output: {
       filename: 'hacker-news-manager.js', /** customise output name */
